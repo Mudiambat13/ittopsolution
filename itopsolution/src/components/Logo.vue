@@ -1,23 +1,26 @@
 <template>
     <div :class="['flex items-center', size === 'large' ? 'gap-4' : 'gap-2']">
-      <!-- Icône avec animation et effets -->
+      <!-- Container du logo avec effets -->
       <div :class="[
         'logo-container relative overflow-hidden rounded-xl transition-all duration-300',
         size === 'large' ? 'p-4' : 'p-2',
         'hover:shadow-lg hover:shadow-[#646cff]/20 group'
       ]">
-        <!-- Fond animé -->
-        <div class="absolute inset-0 bg-gradient-to-br from-[#646cff] to-[#42b883] opacity-90"></div>
-        <div class="absolute inset-0 bg-gradient-to-tr from-[#646cff]/50 to-transparent animate-gradient-slow"></div>
-        
-        <!-- Motif géométrique en arrière-plan -->
-        <div class="absolute inset-0 opacity-10">
-          <div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
-            <div v-for="i in 9" :key="i" class="border border-white/20"></div>
+        <!-- Effets d'arrière-plan -->
+        <div class="absolute inset-0">
+          <!-- Gradient principal -->
+          <div class="absolute inset-0 bg-gradient-to-br from-[#646cff] to-[#42b883] opacity-90"></div>
+          <!-- Gradient animé -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-[#646cff]/50 to-transparent animate-gradient-slow"></div>
+          <!-- Motif géométrique -->
+          <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 grid grid-cols-4 grid-rows-4">
+              <div v-for="i in 16" :key="i" class="border border-white/20"></div>
+            </div>
           </div>
         </div>
 
-        <!-- Logo principal -->
+        <!-- Logo SVG principal -->
         <svg 
           :class="[
             'relative z-10 transition-transform duration-300 group-hover:scale-110',
@@ -25,28 +28,43 @@
           ]"
           viewBox="0 0 24 24" 
           fill="none" 
-          stroke="white" 
-          stroke-width="1.5"
-          stroke-linecap="round" 
-          stroke-linejoin="round"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <!-- Circuit Board Pattern -->
-          <path class="animate-draw" d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          <!-- Cercle externe -->
+          <circle cx="12" cy="12" r="11" class="stroke-white" stroke-width="0.5" stroke-dasharray="2 2" />
           
-          <!-- Centre technologique -->
-          <circle cx="12" cy="12" r="3" class="animate-pulse-subtle" fill="#ffffff33"/>
-          <circle cx="12" cy="12" r="6" class="animate-spin-slow" stroke-dasharray="1 3"/>
+          <!-- Hexagone -->
+          <path 
+            d="M12 4L18 8V16L12 20L6 16V8L12 4Z" 
+            class="stroke-white fill-white/10" 
+            stroke-width="0.5"
+          />
           
-          <!-- Éléments de connexion -->
-          <path class="animate-draw-delayed" d="M12 9v6M9 12h6"/>
-          <path class="animate-draw-delayed" d="M15 9l-6 6M9 9l6 6"/>
+          <!-- Lignes de circuit -->
+          <path 
+            class="animate-draw stroke-white" 
+            d="M12 7v10M9 9l6 6M15 9l-6 6" 
+            stroke-width="0.75"
+          />
+          
+          <!-- Points de connexion -->
+          <circle cx="12" cy="7" r="1" class="fill-white animate-pulse-subtle"/>
+          <circle cx="12" cy="17" r="1" class="fill-white animate-pulse-subtle"/>
+          <circle cx="9" cy="9" r="1" class="fill-white animate-pulse-subtle"/>
+          <circle cx="15" cy="15" r="1" class="fill-white animate-pulse-subtle"/>
+          <circle cx="15" cy="9" r="1" class="fill-white animate-pulse-subtle"/>
+          <circle cx="9" cy="15" r="1" class="fill-white animate-pulse-subtle"/>
+          
+          <!-- Centre -->
+          <circle cx="12" cy="12" r="2" class="fill-white/20 stroke-white" stroke-width="0.5"/>
+          <circle cx="12" cy="12" r="1" class="fill-white animate-pulse"/>
         </svg>
       </div>
   
-      <!-- Texte avec effet de gradient -->
+      <!-- Texte du logo -->
       <div :class="['flex flex-col', size === 'large' ? 'gap-1' : 'gap-0']">
         <span :class="[
-          'font-bold tracking-tight bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent', 
+          'font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/90', 
           size === 'large' ? 'text-3xl' : 'text-xl'
         ]">
           IT TOP
@@ -81,7 +99,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, white/10%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -108,22 +126,13 @@
 }
 
 @keyframes pulse-subtle {
-  0% { opacity: 0.2; }
-  50% { opacity: 0.4; }
-  100% { opacity: 0.2; }
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
 }
 
 .animate-draw {
   animation: draw 3s ease-out forwards;
-}
-
-.animate-draw-delayed {
-  animation: draw 2s ease-out 1s forwards;
 }
 
 .animate-gradient-slow {
@@ -134,8 +143,7 @@
   animation: pulse-subtle 2s ease-in-out infinite;
 }
 
-.animate-spin-slow {
-  transform-origin: center;
-  animation: spin-slow 20s linear infinite;
+.animate-pulse {
+  animation: pulse-subtle 1.5s ease-in-out infinite;
 }
 </style>

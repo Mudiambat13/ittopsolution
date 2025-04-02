@@ -1,0 +1,42 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fond -->
+  <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+  
+  <!-- Logo -->
+  <g transform="translate(4,4) scale(1)">
+    <!-- Hexagone -->
+    <path 
+      d="M12 4L18 8V16L12 20L6 16V8L12 4Z" 
+      fill="rgba(255,255,255,0.1)" 
+      stroke="white" 
+      stroke-width="0.5"
+    />
+    
+    <!-- Lignes de circuit -->
+    <path 
+      d="M12 7v10M9 9l6 6M15 9l-6 6" 
+      stroke="white" 
+      stroke-width="0.75"
+    />
+    
+    <!-- Points -->
+    <circle cx="12" cy="7" r="1" fill="white"/>
+    <circle cx="12" cy="17" r="1" fill="white"/>
+    <circle cx="9" cy="9" r="1" fill="white"/>
+    <circle cx="15" cy="15" r="1" fill="white"/>
+    <circle cx="15" cy="9" r="1" fill="white"/>
+    <circle cx="9" cy="15" r="1" fill="white"/>
+    
+    <!-- Centre -->
+    <circle cx="12" cy="12" r="2" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="0.5"/>
+    <circle cx="12" cy="12" r="1" fill="white"/>
+  </g>
+
+  <!-- Gradient -->
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#646cff"/>
+      <stop offset="100%" stop-color="#42b883"/>
+    </linearGradient>
+  </defs>
+</svg> 
